@@ -67,3 +67,35 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
         this.style.boxShadow = '0 5px 15px rgba(0, 123, 255, 0.3)';
     });
 });
+
+// Mobile menu toggle with overlay
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+const menuOverlay = document.querySelector('.menu-overlay');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    menuOverlay.classList.toggle('show');
+});
+
+// Close menu when clicking overlay
+menuOverlay.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+    menuOverlay.classList.remove('show');
+});
+
+// Close menu when clicking links
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('show');
+        menuOverlay.classList.remove('show');
+    });
+});
+
+// Close menu when pressing escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        navMenu.classList.remove('show');
+        menuOverlay.classList.remove('show');
+    }
+});
